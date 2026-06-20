@@ -127,9 +127,52 @@
       max-width: 680px;
     }
 
+    /* ── FILTER BUTTONS ── */
+    .filter-bar {
+      padding: 24px 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .filter-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-right: 4px;
+    }
+
+    .filter-btn {
+      background: none;
+      border: 2px solid var(--rule-dark);
+      color: var(--text-secondary);
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--navy);
+      color: var(--navy);
+    }
+
+    .filter-btn.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--white);
+    }
+
     /* ── ARTICLE LIST ── */
     .article-list {
-      padding: 40px 0 64px;
+      padding: 32px 0 64px;
     }
 
     .article-card {
@@ -147,6 +190,10 @@
 
     .article-card:last-child {
       border-bottom: none;
+    }
+
+    .article-card.hidden {
+      display: none;
     }
 
     .article-card-main {
@@ -279,14 +326,28 @@
     </div>
   </div>
 
+  <!-- FILTER BAR -->
+  <div class="container">
+    <div class="filter-bar">
+      <span class="filter-label">Filter:</span>
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="governance-analysis">Governance Analysis</button>
+      <button class="filter-btn" data-filter="superintendent-relations">Superintendent Relations</button>
+      <button class="filter-btn" data-filter="outcome-monitoring">Outcome Monitoring</button>
+      <button class="filter-btn" data-filter="curriculum-policy">Curriculum and Policy</button>
+      <button class="filter-btn" data-filter="board-composition">Board Composition</button>
+      <button class="filter-btn" data-filter="finance-resources">Finance and Resources</button>
+    </div>
+  </div>
+
   <!-- ARTICLE LIST -->
   <main>
     <div class="container">
-      <div class="article-list">
+      <div class="article-list" id="article-list">
 
-        <div class="article-card">
+        <div class="article-card" data-topic="curriculum-policy">
           <div class="article-card-main">
-            <div class="category-chip">Analysis</div>
+            <div class="category-chip">Curriculum and Policy</div>
             <a href="/analysis/curriculum-governance-overreach.html" class="article-headline-link">
               <div class="article-headline">When Boards Vote on Curriculum, Students Pay the Price</div>
             </a>
@@ -296,9 +357,9 @@
           </div>
         </div>
 
-        <div class="article-card">
+        <div class="article-card" data-topic="superintendent-relations">
           <div class="article-card-main">
-            <div class="category-chip">Governance-Management</div>
+            <div class="category-chip">Superintendent Relations</div>
             <a href="/analysis/superintendent-resignation-governance.html" class="article-headline-link">
               <div class="article-headline">The Superintendent Who Resigned Because the Board 'Helped Too Much'</div>
             </a>
@@ -308,9 +369,9 @@
           </div>
         </div>
 
-        <div class="article-card">
+        <div class="article-card" data-topic="outcome-monitoring">
           <div class="article-card-main">
-            <div class="category-chip">Policy</div>
+            <div class="category-chip">Outcome Monitoring</div>
             <a href="/analysis/state-board-outcome-monitoring.html" class="article-headline-link">
               <div class="article-headline">State Board Mandates Outcome Monitoring Requirements: What This Means for Local Districts</div>
             </a>
@@ -320,9 +381,9 @@
           </div>
         </div>
 
-        <div class="article-card">
+        <div class="article-card" data-topic="governance-analysis">
           <div class="article-card-main">
-            <div class="category-chip">Analysis</div>
+            <div class="category-chip">Governance Analysis</div>
             <a href="/analysis/three-districts-same-challenge.html" class="article-headline-link">
               <div class="article-headline">Three Districts, Three Different Approaches to the Same Governance Challenge</div>
             </a>
@@ -332,9 +393,9 @@
           </div>
         </div>
 
-        <div class="article-card">
+        <div class="article-card" data-topic="governance-analysis">
           <div class="article-card-main">
-            <div class="category-chip">Governance</div>
+            <div class="category-chip">Governance Analysis</div>
             <a href="/analysis/oversight-not-interference.html" class="article-headline-link">
               <div class="article-headline">Why Board Oversight of the Superintendent Is Not the Same as Board Interference</div>
             </a>
@@ -344,9 +405,9 @@
           </div>
         </div>
 
-        <div class="article-card">
+        <div class="article-card" data-topic="governance-analysis">
           <div class="article-card-main">
-            <div class="category-chip">Board Accountability</div>
+            <div class="category-chip">Governance Analysis</div>
             <a href="/analysis/quiet-pattern-boards-overstep.html" class="article-headline-link">
               <div class="article-headline">The Quiet Pattern Behind Boards That Overstep</div>
             </a>
@@ -356,9 +417,9 @@
           </div>
         </div>
 
-        <div class="article-card">
+        <div class="article-card" data-topic="superintendent-relations">
           <div class="article-card-main">
-            <div class="category-chip">Superintendent Watch</div>
+            <div class="category-chip">Superintendent Relations</div>
             <a href="/analysis/superintendent-accountability-evaluations.html" class="article-headline-link">
               <div class="article-headline">Superintendent Accountability Requires More Than Annual Evaluations</div>
             </a>
@@ -368,15 +429,375 @@
           </div>
         </div>
 
-        <div class="article-card">
+        <div class="article-card" data-topic="outcome-monitoring">
           <div class="article-card-main">
-            <div class="category-chip">Data &amp; Outcomes</div>
+            <div class="category-chip">Outcome Monitoring</div>
             <a href="/analysis/outcome-monitoring-performance.html" class="article-headline-link">
               <div class="article-headline">Districts That Monitor Student Outcomes Outperform Those That Don't</div>
             </a>
             <div class="article-date">May 30, 2026</div>
             <p class="article-summary">Research from RAND, Marzano &amp; Waters, and Kenneth Leithwood consistently finds that governance focused on outcomes is associated with better student performance.</p>
             <a href="/analysis/outcome-monitoring-performance.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <!-- GOVERNANCE ANALYSIS -->
+
+        <div class="article-card" data-topic="governance-analysis">
+          <div class="article-card-main">
+            <div class="category-chip">Governance Analysis</div>
+            <a href="/analysis/board-role-policy-vs-operations.html" class="article-headline-link">
+              <div class="article-headline">Policy vs. Operations: What the Board's Role Actually Is</div>
+            </a>
+            <div class="article-date">May 28, 2026</div>
+            <p class="article-summary">The distinction between setting policy and managing operations is fundamental to effective school board governance — yet most boards blur the line routinely. Understanding where the boundary lies, and why it matters, is the starting point for governance that actually serves students.</p>
+            <a href="/analysis/board-role-policy-vs-operations.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="governance-analysis">
+          <div class="article-card-main">
+            <div class="category-chip">Governance Analysis</div>
+            <a href="/analysis/when-boards-override-superintendent.html" class="article-headline-link">
+              <div class="article-headline">When Boards Override the Superintendent: A Governance Red Flag</div>
+            </a>
+            <div class="article-date">May 26, 2026</div>
+            <p class="article-summary">Board votes to reverse or override superintendent decisions are rare in effective districts — and common in dysfunctional ones. The pattern reveals whether a board understands its governance role or has slipped into managing.</p>
+            <a href="/analysis/when-boards-override-superintendent.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="governance-analysis">
+          <div class="article-card-main">
+            <div class="category-chip">Governance Analysis</div>
+            <a href="/analysis/board-meeting-time-allocation.html" class="article-headline-link">
+              <div class="article-headline">How Boards Spend Their Meeting Time Reveals Their Governance Priorities</div>
+            </a>
+            <div class="article-date">May 23, 2026</div>
+            <p class="article-summary">Audit a board's meeting minutes and you'll find its real priorities. Boards that spend most of their time on operational approvals and ceremonial recognition are not governing — they're administrating from a dais.</p>
+            <a href="/analysis/board-meeting-time-allocation.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="governance-analysis">
+          <div class="article-card-main">
+            <div class="category-chip">Governance Analysis</div>
+            <a href="/analysis/rubber-stamp-boards.html" class="article-headline-link">
+              <div class="article-headline">The Rubber Stamp Board: Why Unanimous Agreement Is Not Always a Good Sign</div>
+            </a>
+            <div class="article-date">May 21, 2026</div>
+            <p class="article-summary">A board that never disagrees may look unified, but it often signals that governance has been captured by administration. Healthy boards ask hard questions; they don't just ratify what staff presents.</p>
+            <a href="/analysis/rubber-stamp-boards.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="governance-analysis">
+          <div class="article-card-main">
+            <div class="category-chip">Governance Analysis</div>
+            <a href="/analysis/board-policy-manual-gaps.html" class="article-headline-link">
+              <div class="article-headline">What's Missing From Most Board Policy Manuals</div>
+            </a>
+            <div class="article-date">May 19, 2026</div>
+            <p class="article-summary">Policy manuals are the operating system of school board governance — but most are outdated, internally inconsistent, or silent on the decisions that matter most. Here's what effective policy manuals get right.</p>
+            <a href="/analysis/board-policy-manual-gaps.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="governance-analysis">
+          <div class="article-card-main">
+            <div class="category-chip">Governance Analysis</div>
+            <a href="/analysis/board-self-evaluation.html" class="article-headline-link">
+              <div class="article-headline">Board Self-Evaluation: The Accountability Practice Most Boards Skip</div>
+            </a>
+            <div class="article-date">May 16, 2026</div>
+            <p class="article-summary">Boards that hold the superintendent accountable but never evaluate their own performance create an accountability asymmetry that undermines trust. The most effective boards treat self-evaluation as a core governance discipline.</p>
+            <a href="/analysis/board-self-evaluation.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <!-- SUPERINTENDENT RELATIONS -->
+
+        <div class="article-card" data-topic="superintendent-relations">
+          <div class="article-card-main">
+            <div class="category-chip">Superintendent Relations</div>
+            <a href="/analysis/superintendent-search-governance.html" class="article-headline-link">
+              <div class="article-headline">The Superintendent Search Is a Governance Decision, Not Just a Hiring Process</div>
+            </a>
+            <div class="article-date">May 14, 2026</div>
+            <p class="article-summary">How a board conducts a superintendent search signals more about its governance culture than almost any other act. Boards that rush, politicize, or outsource this process without intentional governance criteria often regret the result.</p>
+            <a href="/analysis/superintendent-search-governance.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="superintendent-relations">
+          <div class="article-card-main">
+            <div class="category-chip">Superintendent Relations</div>
+            <a href="/analysis/board-superintendent-communication.html" class="article-headline-link">
+              <div class="article-headline">Communication Between Board and Superintendent: What the Research Shows</div>
+            </a>
+            <div class="article-date">May 12, 2026</div>
+            <p class="article-summary">Superintendent tenure correlates strongly with the quality of board-superintendent communication. Districts where the relationship is structured, transparent, and expectation-setting retain leaders longer and get better results.</p>
+            <a href="/analysis/board-superintendent-communication.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="superintendent-relations">
+          <div class="article-card-main">
+            <div class="category-chip">Superintendent Relations</div>
+            <a href="/analysis/superintendent-autonomy-accountability.html" class="article-headline-link">
+              <div class="article-headline">Autonomy and Accountability Are Not Opposites</div>
+            </a>
+            <div class="article-date">May 9, 2026</div>
+            <p class="article-summary">Effective governance gives superintendents broad operational autonomy — and holds them tightly accountable for outcomes. Boards that confuse accountability with oversight of methods end up with compliance theater, not results.</p>
+            <a href="/analysis/superintendent-autonomy-accountability.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="superintendent-relations">
+          <div class="article-card-main">
+            <div class="category-chip">Superintendent Relations</div>
+            <a href="/analysis/board-micromanagement-signs.html" class="article-headline-link">
+              <div class="article-headline">Five Signs Your Board Is Micromanaging the Superintendent</div>
+            </a>
+            <div class="article-date">May 7, 2026</div>
+            <p class="article-summary">Micromanagement often looks like engagement. Board members believe they are being thorough and responsible — but they are actually eroding superintendent authority and signaling distrust to staff throughout the district.</p>
+            <a href="/analysis/board-micromanagement-signs.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <!-- OUTCOME MONITORING -->
+
+        <div class="article-card" data-topic="outcome-monitoring">
+          <div class="article-card-main">
+            <div class="category-chip">Outcome Monitoring</div>
+            <a href="/analysis/monitoring-calendar-design.html" class="article-headline-link">
+              <div class="article-headline">Designing a Monitoring Calendar That Actually Works</div>
+            </a>
+            <div class="article-date">May 5, 2026</div>
+            <p class="article-summary">A well-designed monitoring calendar ensures boards review progress on student outcomes at regular, predictable intervals rather than reacting to crises. Most districts don't have one — and governance suffers for it.</p>
+            <a href="/analysis/monitoring-calendar-design.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="outcome-monitoring">
+          <div class="article-card-main">
+            <div class="category-chip">Outcome Monitoring</div>
+            <a href="/analysis/data-dashboards-boards-use.html" class="article-headline-link">
+              <div class="article-headline">What Data Dashboards Do Boards Actually Use?</div>
+            </a>
+            <div class="article-date">May 2, 2026</div>
+            <p class="article-summary">Not all data dashboards are governance tools. Many are compliance artifacts that give boards the appearance of data-driven oversight without the substance. Here's what distinguishes dashboards boards genuinely use from ones they merely receive.</p>
+            <a href="/analysis/data-dashboards-boards-use.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="outcome-monitoring">
+          <div class="article-card-main">
+            <div class="category-chip">Outcome Monitoring</div>
+            <a href="/analysis/outcome-goals-vs-output-goals.html" class="article-headline-link">
+              <div class="article-headline">Outcome Goals vs. Output Goals: Why the Difference Matters for Governance</div>
+            </a>
+            <div class="article-date">April 30, 2026</div>
+            <p class="article-summary">Boards that set output goals — programs launched, staff trained, curricula adopted — are not monitoring student outcomes. Effective governance requires goals tied directly to what students know and can do, not what adults do.</p>
+            <a href="/analysis/outcome-goals-vs-output-goals.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="outcome-monitoring">
+          <div class="article-card-main">
+            <div class="category-chip">Outcome Monitoring</div>
+            <a href="/analysis/board-response-to-bad-data.html" class="article-headline-link">
+              <div class="article-headline">How a Board Responds to Bad Data Reveals Its Governance Culture</div>
+            </a>
+            <div class="article-date">April 28, 2026</div>
+            <p class="article-summary">When test scores decline or achievement gaps widen, effective boards ask hard questions and adjust goals. Dysfunctional boards explain away the data, attack the messenger, or pivot to operational fixes that miss the governance point.</p>
+            <a href="/analysis/board-response-to-bad-data.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <!-- CURRICULUM AND POLICY -->
+
+        <div class="article-card" data-topic="curriculum-policy">
+          <div class="article-card-main">
+            <div class="category-chip">Curriculum and Policy</div>
+            <a href="/analysis/book-ban-governance.html" class="article-headline-link">
+              <div class="article-headline">Book Bans and Board Governance: Who Should Be Making This Decision?</div>
+            </a>
+            <div class="article-date">April 25, 2026</div>
+            <p class="article-summary">When boards vote on specific book titles, they are operating as curriculum committees, not governing bodies. The governance question is not which books to ban — it's what policy framework governs materials selection and who is accountable for it.</p>
+            <a href="/analysis/book-ban-governance.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="curriculum-policy">
+          <div class="article-card-main">
+            <div class="category-chip">Curriculum and Policy</div>
+            <a href="/analysis/standards-adoption-board-role.html" class="article-headline-link">
+              <div class="article-headline">Standards Adoption: Where the Board's Role Ends and Staff's Begins</div>
+            </a>
+            <div class="article-date">April 23, 2026</div>
+            <p class="article-summary">Boards have a legitimate role in setting expectations for what students should learn. They do not have a governance role in determining how teachers teach it. Conflating these two responsibilities has derailed academic progress in districts across the country.</p>
+            <a href="/analysis/standards-adoption-board-role.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="curriculum-policy">
+          <div class="article-card-main">
+            <div class="category-chip">Curriculum and Policy</div>
+            <a href="/analysis/special-education-governance.html" class="article-headline-link">
+              <div class="article-headline">Special Education and the Governance Gap</div>
+            </a>
+            <div class="article-date">April 21, 2026</div>
+            <p class="article-summary">Special education is one of the areas where boards are most likely to veer into case management — responding to individual family requests rather than monitoring whether the district's approach is meeting the needs of all students with disabilities.</p>
+            <a href="/analysis/special-education-governance.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="curriculum-policy">
+          <div class="article-card-main">
+            <div class="category-chip">Curriculum and Policy</div>
+            <a href="/analysis/school-calendar-governance.html" class="article-headline-link">
+              <div class="article-headline">The School Calendar Is a Policy Decision — Treat It Like One</div>
+            </a>
+            <div class="article-date">April 18, 2026</div>
+            <p class="article-summary">Calendar decisions affect instructional time, staff contracts, family planning, and community trust. Boards that treat calendar adoption as a routine approval rather than a values-laden policy choice miss an important opportunity for transparent governance.</p>
+            <a href="/analysis/school-calendar-governance.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="curriculum-policy">
+          <div class="article-card-main">
+            <div class="category-chip">Curriculum and Policy</div>
+            <a href="/analysis/discipline-policy-board-role.html" class="article-headline-link">
+              <div class="article-headline">Discipline Policy and the Board's Role in Setting Expectations</div>
+            </a>
+            <div class="article-date">April 16, 2026</div>
+            <p class="article-summary">Discipline disparities are one of the most persistent equity challenges in public education. The board's role is to set a clear policy framework and monitor whether outcomes are equitable — not to adjudicate individual disciplinary cases.</p>
+            <a href="/analysis/discipline-policy-board-role.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <!-- BOARD COMPOSITION -->
+
+        <div class="article-card" data-topic="board-composition">
+          <div class="article-card-main">
+            <div class="category-chip">Board Composition</div>
+            <a href="/analysis/competitive-elections-governance.html" class="article-headline-link">
+              <div class="article-headline">Do Competitive School Board Elections Produce Better Governance?</div>
+            </a>
+            <div class="article-date">April 14, 2026</div>
+            <p class="article-summary">Competitive elections increase accountability to voters — but they also increase ideological pressure and can destabilize governance. The evidence on whether contested elections produce better board performance is more complicated than either side admits.</p>
+            <a href="/analysis/competitive-elections-governance.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="board-composition">
+          <div class="article-card-main">
+            <div class="category-chip">Board Composition</div>
+            <a href="/analysis/term-limits-board-quality.html" class="article-headline-link">
+              <div class="article-headline">Term Limits for School Boards: Do They Improve Governance?</div>
+            </a>
+            <div class="article-date">April 11, 2026</div>
+            <p class="article-summary">Proponents argue term limits prevent entrenchment and bring fresh perspectives. Opponents note they eliminate institutional memory and governance expertise just as it matures. The research suggests context matters more than the policy itself.</p>
+            <a href="/analysis/term-limits-board-quality.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="board-composition">
+          <div class="article-card-main">
+            <div class="category-chip">Board Composition</div>
+            <a href="/analysis/appointed-vs-elected-boards.html" class="article-headline-link">
+              <div class="article-headline">Appointed vs. Elected Boards: What the Evidence Shows</div>
+            </a>
+            <div class="article-date">April 9, 2026</div>
+            <p class="article-summary">A handful of major urban districts have shifted to appointed boards, arguing it produces more coherent governance. Critics argue it removes democratic accountability. The evidence for either position is thinner than advocates on both sides suggest.</p>
+            <a href="/analysis/appointed-vs-elected-boards.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="board-composition">
+          <div class="article-card-main">
+            <div class="category-chip">Board Composition</div>
+            <a href="/analysis/board-member-preparation.html" class="article-headline-link">
+              <div class="article-headline">Most Board Members Arrive Unprepared. That's a Governance Crisis.</div>
+            </a>
+            <div class="article-date">April 7, 2026</div>
+            <p class="article-summary">New board members are typically sworn in with no governance training, handed a thick policy manual, and expected to vote on multi-million-dollar decisions within weeks. The gap between what the role demands and what candidates are prepared to do is one of the most underexamined problems in public education.</p>
+            <a href="/analysis/board-member-preparation.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="board-composition">
+          <div class="article-card-main">
+            <div class="category-chip">Board Composition</div>
+            <a href="/analysis/board-conflict-dysfunction.html" class="article-headline-link">
+              <div class="article-headline">When Board Conflict Becomes Board Dysfunction</div>
+            </a>
+            <div class="article-date">April 4, 2026</div>
+            <p class="article-summary">Disagreement among board members is healthy; dysfunction is not. The line between them runs through whether conflict is about governance principles or personal grievances — and whether the board can still make decisions when members disagree.</p>
+            <a href="/analysis/board-conflict-dysfunction.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <!-- FINANCE AND RESOURCES -->
+
+        <div class="article-card" data-topic="finance-resources">
+          <div class="article-card-main">
+            <div class="category-chip">Finance and Resources</div>
+            <a href="/analysis/budget-adoption-governance.html" class="article-headline-link">
+              <div class="article-headline">Budget Adoption Is a Governance Act, Not an Accounting Exercise</div>
+            </a>
+            <div class="article-date">April 2, 2026</div>
+            <p class="article-summary">A district's budget is its strategy made concrete. Boards that treat budget adoption as a rubber-stamp of staff recommendations are ceding one of their most consequential governance responsibilities — the authority to align resources with stated student outcome goals.</p>
+            <a href="/analysis/budget-adoption-governance.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="finance-resources">
+          <div class="article-card-main">
+            <div class="category-chip">Finance and Resources</div>
+            <a href="/analysis/audit-findings-board-response.html" class="article-headline-link">
+              <div class="article-headline">How Boards Should Respond to Audit Findings</div>
+            </a>
+            <div class="article-date">March 31, 2026</div>
+            <p class="article-summary">Audit findings are a test of board governance culture. Boards that treat findings as embarrassments to minimize are missing an accountability opportunity. Boards that treat them as information to act on demonstrate the kind of oversight that builds community trust.</p>
+            <a href="/analysis/audit-findings-board-response.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="finance-resources">
+          <div class="article-card-main">
+            <div class="category-chip">Finance and Resources</div>
+            <a href="/analysis/reserve-funds-governance.html" class="article-headline-link">
+              <div class="article-headline">Reserve Funds and the Board's Role in Long-Term Financial Stewardship</div>
+            </a>
+            <div class="article-date">March 28, 2026</div>
+            <p class="article-summary">How much reserve a district should hold is a governance decision requiring explicit board policy — not an administrative default. Boards that let reserves accumulate without policy direction, or draw them down without board-level debate, are abdicating financial governance.</p>
+            <a href="/analysis/reserve-funds-governance.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="finance-resources">
+          <div class="article-card-main">
+            <div class="category-chip">Finance and Resources</div>
+            <a href="/analysis/budget-cuts-governance-role.html" class="article-headline-link">
+              <div class="article-headline">When Cuts Must Happen: The Board's Governance Role in Difficult Budget Years</div>
+            </a>
+            <div class="article-date">March 26, 2026</div>
+            <p class="article-summary">Budget reductions are a governance test. Boards that direct staff to "cut overhead" without policy guidance abdicate responsibility. Effective boards set explicit criteria — tied to student outcomes — for how reductions should be prioritized.</p>
+            <a href="/analysis/budget-cuts-governance-role.html" class="read-more">Read More →</a>
+          </div>
+        </div>
+
+        <div class="article-card" data-topic="finance-resources">
+          <div class="article-card-main">
+            <div class="category-chip">Finance and Resources</div>
+            <a href="/analysis/financial-transparency-boards.html" class="article-headline-link">
+              <div class="article-headline">Financial Transparency as a Governance Value</div>
+            </a>
+            <div class="article-date">March 24, 2026</div>
+            <p class="article-summary">Districts that proactively publish detailed financial data build more community trust than those that share only what is legally required. Boards set the transparency standard — and the standard they set reflects what they believe the public is owed.</p>
+            <a href="/analysis/financial-transparency-boards.html" class="read-more">Read More →</a>
           </div>
         </div>
 
@@ -389,9 +810,33 @@
     <div class="footer-red-rule"></div>
     <div class="footer-inner">
       <div class="footer-masthead">School Board Report</div>
-      <div class="footer-copy">© 2026 School Board Report — Governance analysis that matters</div>
+      <div class="footer-copy">&copy; 2026 School Board Report — Governance analysis that matters</div>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      var buttons = document.querySelectorAll('.filter-btn');
+      var cards = document.querySelectorAll('.article-card');
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var filter = btn.getAttribute('data-filter');
+
+          buttons.forEach(function (b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+
+          cards.forEach(function (card) {
+            if (filter === 'all' || card.getAttribute('data-topic') === filter) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
 
 </body>
 </html>

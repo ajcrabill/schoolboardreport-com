@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>When Boards Vote on Curriculum: Analysis of a Common Governance Overreach — School Board Report</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --steel-blue: #1B4F72;
+      --white: #FFFFFF;
+      --red: #C0392B;
+      --light-steel: #D6EAF8;
+      --dark-steel: #0E2F44;
+    }
+
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 400;
+      color: var(--dark-steel);
+      background: var(--white);
+    }
+
+    /* NAV */
+    nav {
+      background: var(--steel-blue);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+    }
+    .nav-logo {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.88);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    /* ARTICLE HEADER */
+    .article-header {
+      background: var(--dark-steel);
+      padding: 56px 24px 52px;
+    }
+    .article-header-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .category-tag {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+    .article-header h1 {
+      color: var(--white);
+      font-size: 2.1rem;
+      font-weight: 700;
+      line-height: 1.22;
+      margin-bottom: 18px;
+    }
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .article-date {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+    }
+    .article-byline {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .meta-divider {
+      color: rgba(255,255,255,0.3);
+      font-size: 0.85rem;
+    }
+
+    /* ARTICLE BODY */
+    .article-body {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 52px 24px 72px;
+    }
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #1a3244;
+      margin-bottom: 24px;
+      font-weight: 400;
+    }
+    .article-body h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--dark-steel);
+      margin: 36px 0 14px;
+      line-height: 1.3;
+    }
+    .article-body .lede {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: #2c4f65;
+      line-height: 1.75;
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--light-steel);
+    }
+    .pullquote {
+      border-left: 4px solid var(--steel-blue);
+      margin: 36px 0;
+      padding: 16px 24px;
+      background: var(--light-steel);
+      border-radius: 0 4px 4px 0;
+    }
+    .pullquote p {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--dark-steel);
+      line-height: 1.6;
+      margin-bottom: 0;
+      font-style: italic;
+    }
+
+    /* BACK LINK */
+    .back-bar {
+      background: var(--light-steel);
+      padding: 14px 24px;
+    }
+    .back-bar-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .back-link {
+      color: var(--steel-blue);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .back-link:hover { color: var(--red); }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark-steel);
+      padding: 36px 24px;
+      text-align: center;
+    }
+    footer p {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.88rem;
+      font-weight: 400;
+      line-height: 1.8;
+    }
+    footer .footer-brand {
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .article-header h1 { font-size: 1.55rem; }
+      .nav-links { gap: 18px; }
+      .nav-links a { font-size: 0.82rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">School Board Report</a>
+      <ul class="nav-links">
+        <li><a href="#">Analysis</a></li>
+        <li><a href="#">Topics</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HEADER -->
+  <header class="article-header">
+    <div class="article-header-inner">
+      <span class="category-tag">Governance Analysis</span>
+      <h1>When Boards Vote on Curriculum: Analysis of a Common Governance Overreach</h1>
+      <div class="article-meta">
+        <span class="article-date">June 16, 2026</span>
+        <span class="meta-divider">|</span>
+        <span class="article-byline">School Board Report Analysis</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- BACK BAR -->
+  <div class="back-bar">
+    <div class="back-bar-inner">
+      <a href="/" class="back-link">← Back to School Board Report</a>
+    </div>
+  </div>
+
+  <!-- ARTICLE BODY -->
+  <article class="article-body">
+
+    <p class="lede">Last month, three school districts voted at the board level to select specific curriculum materials — adopting a particular reading program in one case, approving a specific math series in another, and selecting a social studies textbook package in the third. Each vote was covered locally as routine board business. None were.</p>
+
+    <h2>The Pattern</h2>
+
+    <p>Board votes on specific curriculum materials have become more common as constituent pressure on academic content has intensified. The dynamic is familiar: community members show up at meetings asking why students are using a particular program, or demanding a different one. Board members, responsive to their constituents, feel pressure to act. Voting to adopt or reject specific materials feels like action.</p>
+
+    <p>It is action. It is also a governance error — one that matters more than it might appear.</p>
+
+    <h2>Why Boards Do It</h2>
+
+    <p>The appeal of voting on curriculum materials is understandable. Curriculum is visible. Parents can hold a textbook. Students can bring it home. When constituents are unhappy with what their children are learning, the demand for board-level action is real and often loud.</p>
+
+    <p>Board members also operate in environments where the line between governance and management is rarely taught explicitly. Many board members arrive with no training in governance theory. They know they were elected to make decisions — and selecting curriculum materials feels like exactly the kind of decision voters sent them to make.</p>
+
+    <p>There is also a control dynamic at work. Setting policy and monitoring outcomes requires trusting the superintendent to implement. Voting on materials feels more concrete, more certain, more directly connected to the problem constituents raised.</p>
+
+    <h2>Why It's a Governance Problem</h2>
+
+    <p>The board-superintendent relationship rests on a structural distinction: boards set direction and policy, superintendents implement. When a board votes to adopt specific curriculum materials, it has crossed from the first category into the second. Selecting materials is an implementation decision.</p>
+
+    <p>This matters for accountability. If the board selects the materials and outcomes remain poor, who is responsible? The superintendent cannot be held fully accountable for results produced by materials the board chose. The board cannot hold the superintendent accountable for implementation of a decision the board made itself. The accountability chain — the essential mechanism through which governance produces results — becomes confused.</p>
+
+    <div class="pullquote">
+      <p>"When a board votes on materials, it doesn't just make a curriculum decision. It dissolves the accountability structure that makes the superintendent's job meaningful."</p>
+    </div>
+
+    <p>Governance researchers consistently find that micromanagement — defined as board involvement in implementation decisions — correlates with higher superintendent turnover, lower superintendent effectiveness, and worse student outcomes. The research is not subtle on this point. Boards that involve themselves in operational decisions undermine the very leadership they rely on to produce results.</p>
+
+    <h2>What Outcomes-Focused Governance Looks Like</h2>
+
+    <p>An outcomes-focused board approaches curriculum differently. Rather than asking which materials to adopt, the board sets curriculum policy: what academic standards students are expected to meet, what outcomes the district is committed to producing, and what the monitoring process will be for determining whether those outcomes are being achieved.</p>
+
+    <p>The superintendent then makes implementation decisions — including curriculum selection — within that policy framework. The board's job shifts to monitoring: Are students meeting the standards we set? Is the data the superintendent is presenting actually telling us what we need to know? If outcomes are falling short, is the superintendent making appropriate adjustments?</p>
+
+    <p>This is a harder governance job than voting on materials. It requires discipline about role, patience with a monitoring cadence, and willingness to hold the superintendent accountable for results without dictating methods.</p>
+
+    <h2>The Question Boards Should Be Asking</h2>
+
+    <p>The right question is not "which curriculum should we adopt?" The right question is: "What reading outcomes are we committed to producing for our students, and how will we know — regardless of which curriculum is in place — whether any approach is working?"</p>
+
+    <p>A board that can answer that question clearly has done its governance job. A superintendent who knows the board will monitor against those outcomes — not second-guess implementation choices — has the clarity needed to lead.</p>
+
+    <h2>The Irony</h2>
+
+    <p>The boards that voted on curriculum materials last month almost certainly did so because they care about students. Constituent pressure on curriculum is usually driven by genuine concern about what children are learning. Board members who respond to that pressure are doing what elected officials do — they are trying to be responsive.</p>
+
+    <p>But the governance move they made makes it harder, not easier, to get the results their constituents want. By taking on an implementation decision, these boards created accountability confusion that will outlast the vote itself. If the chosen materials underperform, the board will find it difficult to hold anyone responsible — because the board is partially responsible.</p>
+
+    <p>Outcomes-focused governance is, at its core, about keeping the accountability chain intact. Boards that stay in their lane — setting direction, monitoring results, holding leadership accountable — give districts the best chance of actually delivering for students. Boards that cross into implementation may feel like they're doing more. They're usually making it harder for anyone to do enough.</p>
+
+  </article>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-brand">School Board Report — governance analysis that matters</p>
+    <p>© 2026 School Board Report</p>
+  </footer>
+
+</body>
+</html>

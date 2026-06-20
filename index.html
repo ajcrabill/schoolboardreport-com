@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>School Board Report — Governance Analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --steel-blue: #1B4F72;
+      --white: #FFFFFF;
+      --red: #C0392B;
+      --light-steel: #D6EAF8;
+      --dark-steel: #0E2F44;
+    }
+
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 400;
+      color: var(--dark-steel);
+      background: var(--white);
+    }
+
+    /* NAV */
+    nav {
+      background: var(--steel-blue);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+    }
+    .nav-logo {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.88);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    /* HERO */
+    .hero {
+      background: var(--dark-steel);
+      padding: 72px 24px 80px;
+    }
+    .hero-inner {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .category-tag {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      color: var(--white);
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      color: rgba(255,255,255,0.82);
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 640px;
+    }
+
+    /* FEATURED */
+    .featured {
+      background: var(--steel-blue);
+      padding: 60px 24px;
+    }
+    .featured-inner {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 16px;
+    }
+    .featured h2 {
+      color: var(--white);
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+    .featured .article-date {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+      font-weight: 400;
+      margin-bottom: 18px;
+    }
+    .featured p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+    .btn-light {
+      display: inline-block;
+      background: var(--light-steel);
+      color: var(--dark-steel);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: 3px;
+      letter-spacing: 0.02em;
+      transition: background 0.15s;
+    }
+    .btn-light:hover { background: #c3ddf2; }
+
+    /* RECENT */
+    .recent {
+      background: var(--white);
+      padding: 64px 24px;
+    }
+    .recent-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .recent-header {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--steel-blue);
+      margin-bottom: 32px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--light-steel);
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .card {
+      border: 1px solid #dce8f5;
+      border-radius: 4px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.15s;
+    }
+    .card:hover { box-shadow: 0 4px 18px rgba(27,79,114,0.1); }
+    .card .category-tag { margin-bottom: 14px; }
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--dark-steel);
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+    .card .article-date {
+      font-size: 0.8rem;
+      color: #7a9ab8;
+      margin-bottom: 12px;
+    }
+    .card p {
+      font-size: 0.92rem;
+      color: #3d5a6e;
+      line-height: 1.65;
+      flex-grow: 1;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+    .card-link {
+      color: var(--steel-blue);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      align-self: flex-start;
+    }
+    .card-link:hover { color: var(--red); }
+
+    /* ABOUT */
+    .about {
+      background: var(--light-steel);
+      padding: 64px 24px;
+    }
+    .about-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .about h2 {
+      color: var(--dark-steel);
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    .about p {
+      color: var(--dark-steel);
+      font-size: 1rem;
+      line-height: 1.75;
+      font-weight: 400;
+      margin-bottom: 14px;
+    }
+    .about p:last-child { margin-bottom: 0; }
+    .about .publish-note {
+      font-weight: 600;
+      color: var(--steel-blue);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark-steel);
+      padding: 36px 24px;
+      text-align: center;
+    }
+    footer p {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.88rem;
+      font-weight: 400;
+      line-height: 1.8;
+    }
+    footer .footer-brand {
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.7rem; }
+      .featured h2 { font-size: 1.4rem; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 18px; }
+      .nav-links a { font-size: 0.82rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">School Board Report</a>
+      <ul class="nav-links">
+        <li><a href="#">Analysis</a></li>
+        <li><a href="#">Topics</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="category-tag">Governance Analysis</span>
+      <h1>What's happening in school boards — and what it means for students.</h1>
+      <p>School Board Report analyzes school board governance news through an outcomes-focused lens. New analysis every Monday, Wednesday, and Friday.</p>
+    </div>
+  </section>
+
+  <!-- FEATURED ANALYSIS -->
+  <section class="featured">
+    <div class="featured-inner">
+      <div class="section-label">Today's Analysis</div>
+      <h2>When Boards Vote on Curriculum: Analysis of a Common Governance Overreach</h2>
+      <div class="article-date">June 16, 2026</div>
+      <p>Three districts last month voted on specific curriculum materials rather than setting curricular standards and delegating implementation. The pattern reflects a persistent governance confusion — and has measurable consequences for superintendent effectiveness.</p>
+      <a href="analysis/curriculum-governance-overreach.html" class="btn-light">Read Analysis →</a>
+    </div>
+  </section>
+
+  <!-- RECENT ANALYSIS -->
+  <section class="recent">
+    <div class="recent-inner">
+      <div class="recent-header">Recent Analysis</div>
+      <div class="cards-grid">
+
+        <div class="card">
+          <span class="category-tag">Governance-Management</span>
+          <h3>The Superintendent Who Resigned Because the Board 'Helped Too Much'</h3>
+          <div class="article-date">June 14, 2026</div>
+          <p>When a superintendent cites board micromanagement as a resignation reason, it's a governance story, not a personnel story. What this week's high-profile resignation reveals about governance boundaries.</p>
+          <a href="analysis/superintendent-resignation-governance.html" class="card-link">Read Analysis →</a>
+        </div>
+
+        <div class="card">
+          <span class="category-tag">Policy</span>
+          <h3>State Board Mandates Outcome Monitoring Requirements: What This Means</h3>
+          <div class="article-date">June 11, 2026</div>
+          <p>New state requirements would obligate school boards to demonstrate they're monitoring student outcomes — not just receiving reports. The governance implications are significant.</p>
+          <a href="#" class="card-link">Read Analysis →</a>
+        </div>
+
+        <div class="card">
+          <span class="category-tag">Comparative</span>
+          <h3>Three Districts, Three Different Approaches to the Same Governance Challenge</h3>
+          <div class="article-date">June 9, 2026</div>
+          <p>When facing pressure to address declining reading scores, three districts made three different governance moves. One worked.</p>
+          <a href="#" class="card-link">Read Analysis →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="about-inner">
+      <h2>About School Board Report</h2>
+      <p>School Board Report covers school board governance through an outcomes-focused lens. We analyze what's happening in school boards across the country and explain what it means for the students boards are meant to serve. Our coverage premise: governance decisions have consequences, and those consequences can be traced.</p>
+      <p class="publish-note">New analysis posted Monday, Wednesday, and Friday.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-brand">School Board Report — governance analysis that matters</p>
+    <p>© 2026 School Board Report</p>
+  </footer>
+
+</body>
+</html>

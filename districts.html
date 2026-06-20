@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Districts — School Board Report</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,600;0,800;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1B3A6B;
+      --red: #CC2936;
+      --white: #FFFFFF;
+      --bg-secondary: #F5F5F5;
+      --text-primary: #1A1A1A;
+      --text-secondary: #555555;
+      --text-muted: #888888;
+      --rule: #DDDDDD;
+      --rule-dark: #CCCCCC;
+    }
+
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      font-weight: 400;
+      color: var(--text-primary);
+      background: var(--white);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── MASTHEAD ── */
+    .masthead-top-rule {
+      background: var(--red);
+      height: 3px;
+    }
+
+    .masthead {
+      background: var(--white);
+      padding: 18px 0 0;
+      text-align: center;
+    }
+
+    .masthead-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+      text-transform: none;
+      line-height: 1;
+    }
+
+    .masthead-rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 14px 0 10px;
+    }
+
+    .masthead-date {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ── NAV ── */
+    .masthead-nav {
+      margin-top: 12px;
+      padding: 10px 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .masthead-nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .masthead-nav a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      transition: color 0.15s;
+    }
+
+    .masthead-nav a:hover { color: var(--red); }
+    .masthead-nav a.active { color: var(--navy); border-bottom: 2px solid var(--navy); padding-bottom: 2px; }
+
+    /* ── OUTER CONTAINER ── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 40px 0 28px;
+      border-bottom: 2px solid var(--text-primary);
+    }
+
+    .page-headline {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .page-subheadline {
+      font-size: 1.1rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      max-width: 680px;
+    }
+
+    /* ── INTRO ── */
+    .districts-intro {
+      padding: 32px 0 0;
+      max-width: 760px;
+    }
+
+    .districts-intro p {
+      font-size: 1.02rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    /* ── DISTRICT LIST ── */
+    .district-list {
+      padding: 32px 0 64px;
+    }
+
+    .district-card {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .district-card:last-child {
+      border-bottom: none;
+    }
+
+    .district-card-inner {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 0 48px;
+      align-items: start;
+    }
+
+    .district-meta {
+      padding-top: 2px;
+    }
+
+    .district-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+
+    .district-state {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .district-featured-label {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .district-article-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.4;
+      border-bottom: 1px solid var(--navy);
+      transition: color 0.15s, border-color 0.15s;
+      display: inline;
+    }
+
+    .district-article-link:hover {
+      color: var(--red);
+      border-color: var(--red);
+    }
+
+    .district-article-date {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 5px;
+    }
+
+    .district-context {
+      font-size: 0.97rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 0;
+    }
+
+    .footer-red-rule {
+      background: var(--red);
+      height: 3px;
+    }
+
+    .footer-inner {
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .footer-masthead {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      .masthead-title { font-size: 1.5rem; }
+      .page-headline { font-size: 1.6rem; }
+      .masthead-nav ul { gap: 18px; flex-wrap: wrap; }
+      .district-card-inner { grid-template-columns: 1fr; gap: 16px 0; }
+      .district-meta { padding-bottom: 20px; border-bottom: 1px solid var(--rule); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MASTHEAD -->
+  <div class="masthead-top-rule"></div>
+
+  <header class="masthead">
+    <div class="container">
+      <div class="masthead-title"><a href="/index.html">School Board Report</a></div>
+      <hr class="masthead-rule" />
+      <div class="masthead-date">Friday, June 20, 2026</div>
+    </div>
+    <nav class="masthead-nav">
+      <ul>
+        <li><a href="/analysis.html">Analysis</a></li>
+        <li><a href="/districts.html" class="active">Districts</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="container">
+      <h1 class="page-headline">Districts in Recent Coverage</h1>
+      <p class="page-subheadline">School districts featured in School Board Report analysis over the past 60 days.</p>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <main>
+    <div class="container">
+
+      <div class="districts-intro">
+        <p>School Board Report covers districts where board decisions illustrate important governance patterns. Coverage does not imply dysfunction — some districts appear because they exemplify effective governance practice. We cover what boards actually decided, and analyze what it means.</p>
+      </div>
+
+      <div class="district-list">
+
+        <div class="district-card">
+          <div class="district-card-inner">
+            <div class="district-meta">
+              <div class="district-name">Houston Independent School District</div>
+              <div class="district-state">Texas</div>
+              <div class="district-featured-label">Featured in</div>
+              <a href="/analysis/three-districts-same-challenge.html" class="district-article-link">Three Districts, Three Different Approaches to the Same Governance Challenge</a>
+              <div class="district-article-date">June 9, 2026</div>
+            </div>
+            <div class="district-context">
+              Houston ISD's board repeatedly intervened in operational decisions before the Texas Education Agency assumed oversight in 2023. The TEA intervention followed documented patterns of board micromanagement that eroded the superintendent's ability to lead. Houston ISD is now one of the most-studied cases in school board governance literature.
+            </div>
+          </div>
+        </div>
+
+        <div class="district-card">
+          <div class="district-card-inner">
+            <div class="district-meta">
+              <div class="district-name">Jefferson County School District — Jeffco</div>
+              <div class="district-state">Colorado</div>
+              <div class="district-featured-label">Featured in</div>
+              <a href="/analysis/three-districts-same-challenge.html" class="district-article-link">Three Districts, Three Different Approaches to the Same Governance Challenge</a>
+              <div class="district-article-date">June 9, 2026</div>
+            </div>
+            <div class="district-context">
+              Jeffco's board fired Superintendent Cindy Stevenson in 2014 following a board election that shifted the board's majority. The dismissal, widely covered nationally, triggered a teacher strike and months of community disruption. Jeffco has since stabilized under subsequent board compositions.
+            </div>
+          </div>
+        </div>
+
+        <div class="district-card">
+          <div class="district-card-inner">
+            <div class="district-meta">
+              <div class="district-name">Wake County Public School System</div>
+              <div class="district-state">North Carolina</div>
+              <div class="district-featured-label">Featured in</div>
+              <a href="/analysis/three-districts-same-challenge.html" class="district-article-link">Three Districts, Three Different Approaches to the Same Governance Challenge</a>
+              <div class="district-article-date">June 9, 2026</div>
+            </div>
+            <div class="district-context">
+              Wake County has experienced both constructive and dysfunctional board-superintendent relationships across different board compositions, making it a useful case study in how board culture — not just policy — shapes governance quality.
+            </div>
+          </div>
+        </div>
+
+        <div class="district-card">
+          <div class="district-card-inner">
+            <div class="district-meta">
+              <div class="district-name">Providence Public School District</div>
+              <div class="district-state">Rhode Island</div>
+              <div class="district-featured-label">Featured in</div>
+              <a href="/analysis/quiet-pattern-boards-overstep.html" class="district-article-link">The Quiet Pattern Behind Boards That Overstep</a>
+              <div class="district-article-date">June 4, 2026</div>
+            </div>
+            <div class="district-context">
+              The Rhode Island Department of Education assumed oversight of Providence Public Schools in 2019 following documented findings of governance and operational failures. Providence is a case study in how governance problems compound over time before triggering external intervention.
+            </div>
+          </div>
+        </div>
+
+        <div class="district-card">
+          <div class="district-card-inner">
+            <div class="district-meta">
+              <div class="district-name">Camden City School District</div>
+              <div class="district-state">New Jersey</div>
+              <div class="district-featured-label">Featured in</div>
+              <a href="/analysis/quiet-pattern-boards-overstep.html" class="district-article-link">The Quiet Pattern Behind Boards That Overstep</a>
+              <div class="district-article-date">June 4, 2026</div>
+            </div>
+            <div class="district-context">
+              New Jersey assumed state control of Camden City Schools following a period of documented board governance problems. Like Providence, Camden illustrates how early warning signs of board dysfunction often go unaddressed until intervention becomes unavoidable.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-red-rule"></div>
+    <div class="footer-inner">
+      <div class="footer-masthead">School Board Report</div>
+      <div class="footer-copy">© 2026 School Board Report — Governance analysis that matters</div>
+    </div>
+  </footer>
+
+</body>
+</html>

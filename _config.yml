@@ -1,0 +1,5 @@
+title: "schoolboardreport.com"
+url: "https://schoolboardreport.com"
+exclude:
+  - README.md
+  - "*.md"

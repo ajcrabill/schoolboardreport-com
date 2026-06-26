@@ -2,15 +2,17 @@
 layout: default
 title: "School Board Report — Governance Analysis"
 ---
+{% assign articles = site.pages | where: "layout", "article" | sort: "date" | reverse %}
 
   <!-- LEAD STORY -->
   <section class="lead-section">
     <div class="container">
-      <div class="category-chip">Analysis</div>
-      <h1 class="lead-headline">When Boards Vote on Curriculum, Students Pay the Price</h1>
-      <div class="byline">By School Board Report Staff&nbsp;&nbsp;·&nbsp;&nbsp;June 2026</div>
-      <p class="lede">Three districts last month voted on specific curriculum materials rather than setting curricular standards and delegating implementation to staff. This pattern reflects a persistent governance confusion that research links directly to superintendent turnover — and declining student outcomes in the districts that practice it most aggressively.</p>
-      <a href="analysis/curriculum-governance-overreach.html" class="read-more">Continue reading →</a>
+      {% assign lead = articles[0] %}
+      <div class="category-chip">{{ lead.category }}</div>
+      <h1 class="lead-headline">{{ lead.title }}</h1>
+      <div class="byline">By School Board Report Staff&nbsp;&nbsp;·&nbsp;&nbsp;{{ lead.date_display }}</div>
+      <p class="lede">{{ lead.description }}</p>
+      <a href="{{ lead.url }}" class="read-more">Continue reading →</a>
     </div>
   </section>
 
@@ -20,45 +22,30 @@ title: "School Board Report — Governance Analysis"
       <div class="two-col-grid">
 
         <!-- Left: Second story -->
+        {% assign second = articles[1] %}
         <div class="two-col-main">
-          <div class="category-chip">Governance-Management</div>
-          <h2 class="story-headline">The Superintendent Who Resigned Because the Board 'Helped Too Much'</h2>
-          <div class="byline">By School Board Report Staff&nbsp;&nbsp;·&nbsp;&nbsp;June 14, 2026</div>
-          <p class="story-summary">When a superintendent cites board micromanagement as a reason for resignation, most coverage treats it as a personnel story. It isn't. What this week's high-profile resignation reveals about the boundary between governance and management — and why that boundary is more consequential than most board members realize.</p>
-          <a href="analysis/superintendent-resignation-governance.html" class="read-more">Continue reading →</a>
+          <div class="category-chip">{{ second.category }}</div>
+          <h2 class="story-headline">{{ second.title }}</h2>
+          <div class="byline">By School Board Report Staff&nbsp;&nbsp;·&nbsp;&nbsp;{{ second.date_display }}</div>
+          <p class="story-summary">{{ second.description }}</p>
+          <a href="{{ second.url }}" class="read-more">Continue reading →</a>
         </div>
 
         <!-- Right: Also Today -->
         <div class="two-col-sidebar">
           <div class="sidebar-label">Also Today</div>
           <ul class="sidebar-list">
+            {% for article in articles offset: 2 limit: 5 %}
             <li>
               <span class="sidebar-bullet">■</span>
               <div>
-                <a href="/analysis/state-board-outcome-monitoring.html">
-                  <div class="sidebar-title">State Board Mandates Outcome Monitoring Requirements: What This Means</div>
+                <a href="{{ article.url }}">
+                  <div class="sidebar-title">{{ article.title }}</div>
                 </a>
-                <div class="sidebar-date">June 11, 2026</div>
+                <div class="sidebar-date">{{ article.date_display }}</div>
               </div>
             </li>
-            <li>
-              <span class="sidebar-bullet">■</span>
-              <div>
-                <a href="/analysis/three-districts-same-challenge.html">
-                  <div class="sidebar-title">Three Districts, Three Different Approaches to the Same Governance Challenge</div>
-                </a>
-                <div class="sidebar-date">June 9, 2026</div>
-              </div>
-            </li>
-            <li>
-              <span class="sidebar-bullet">■</span>
-              <div>
-                <a href="/analysis/oversight-not-interference.html">
-                  <div class="sidebar-title">Why Board Oversight of the Superintendent Is Not the Same as Board Interference</div>
-                </a>
-                <div class="sidebar-date">June 6, 2026</div>
-              </div>
-            </li>
+            {% endfor %}
           </ul>
         </div>
 
@@ -78,34 +65,16 @@ title: "School Board Report — Governance Analysis"
   <section class="three-col-section">
     <div class="container">
       <div class="three-col-grid">
-
+        {% for article in articles offset: 7 limit: 3 %}
         <div class="story-card">
-          <div class="category-chip">Board Accountability</div>
-          <a href="/analysis/quiet-pattern-boards-overstep.html">
-            <div class="card-headline">The Quiet Pattern Behind Boards That Overstep</div>
+          <div class="category-chip">{{ article.category }}</div>
+          <a href="{{ article.url }}">
+            <div class="card-headline">{{ article.title }}</div>
           </a>
-          <p class="card-summary">Most board overreach doesn't begin with bad intentions. It begins with confusion about what governance actually means — and who is accountable for what.</p>
-          <div class="byline">June 4, 2026</div>
+          <p class="card-summary">{{ article.description }}</p>
+          <div class="byline">{{ article.date_display }}</div>
         </div>
-
-        <div class="story-card">
-          <div class="category-chip">Superintendent Watch</div>
-          <a href="/analysis/superintendent-accountability-evaluations.html">
-            <div class="card-headline">Superintendent Accountability Requires More Than Annual Evaluations</div>
-          </a>
-          <p class="card-summary">Annual performance reviews are necessary but not sufficient. Boards that only evaluate their superintendent once a year are often the last to know something is wrong.</p>
-          <div class="byline">June 2, 2026</div>
-        </div>
-
-        <div class="story-card">
-          <div class="category-chip">Data &amp; Outcomes</div>
-          <a href="/analysis/outcome-monitoring-performance.html">
-            <div class="card-headline">Districts That Monitor Student Outcomes Outperform Those That Don't</div>
-          </a>
-          <p class="card-summary">A multi-year analysis of district performance data shows a durable correlation: boards with strong outcome-monitoring practices produce better student results, even controlling for demographics.</p>
-          <div class="byline">May 30, 2026</div>
-        </div>
-
+        {% endfor %}
       </div>
     </div>
   </section>
